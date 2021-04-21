@@ -21,22 +21,13 @@ int main() {
     insertEntry(entries, "13576300:156546:Stepin Fetchit");
     insertEntry(entries, "13576300:156547:Remix");
     insertEntry(entries, "13576300:156548:Gruff Rhys");
-    insertEntry(entries, "13576300:156549:Gruff Remix");
-
-    // Get user search query
-    string userInput;
-    cout << "Enter search query: ";
-    cin >> userInput;
 
     // showing contents:
     map<string, wikiEntry>::iterator it = entries.begin();
     for (it = entries.begin(); it != entries.end(); ++it) {
-        if(it->first.find(toLower(userInput)) != string::npos)
-        {
-            cout << "\nName: " << it->first << endl;
-            cout << "NS: " << it->second.pairType.first  << endl;
-            cout << "ID: " << it->second.pairType.second << endl;
-        }
+        cout << "\nName: " << it->first << endl;
+        cout << "NS: " << it->second.pairType.first  << endl;
+        cout << "ID: " << it->second.pairType.second << endl;
     }
 
 }
