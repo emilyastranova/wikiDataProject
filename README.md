@@ -1,0 +1,17 @@
+# Wiki Data Project
+Team Project at Blinn CS for Fundamentals III (McHugh)
+
+## Team Members:
+> Emily Astranova
+<br>Lars (Luan Luc)
+<br>William Hatcher
+<br>Jalen Barr
+<br>Truman Brown
+<br>Zachery McDonald
+
+## Goal
+>Read in data from an offline Wikipedia dat file and then allow a user to search through it using keyword(s) to find a list of articles that match. 
+We work with STL functions that include maps, vectors, sets, and more...
+
+## Graphical Representation
+![alt text](https://github.com/emilyastranova/wikiDataProject/blob/master/Charts/FlowChart.png?raw=true)
