@@ -9,6 +9,7 @@ Team Project at Blinn CS for Fundamentals III (McHugh)
 <br>Truman Brown
 <br>Zachery McDonald
 <br>Evan Herchek
+<br>Atheer Auribi
 
 ## Goal
 >Read in data from an offline Wikipedia dat file and then allow a user to search through it using keyword(s) to find a list of articles that match. 
