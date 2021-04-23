@@ -18,10 +18,10 @@ class wikiEntry {
     string toLower(string str); // Convert string to lowercase
     string title;
     pair<string, string> pairType;
+    bool operator== (const wikiEntry &data);
 };
 
 string parseTitle(string rawData) {
-    string delimiter = ":";
     stringstream data(rawData);
     string line;
     for(int x = 0; x < 3; x++)  // Traverse to third segment of string (the title)
@@ -64,4 +64,12 @@ wikiEntry::wikiEntry(string title, string ns, string id) {
 }
 
 wikiEntry::~wikiEntry() {
+}
+
+bool wikiEntry::operator== (const wikiEntry &data) {
+      if (this->pairType.first == pairType.first && this->title == data.title) {
+          cout << "This Title:" << this->title << " title: " << data.title << endl;
+          return true;
+      }
+      return false;
 }
