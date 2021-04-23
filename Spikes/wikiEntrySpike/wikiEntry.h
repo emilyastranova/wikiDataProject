@@ -1,3 +1,5 @@
+#ifndef H_WIKI_ENTRY_SPIKE
+#define H_WIKI_ENTRY_SPIKE
 #include <iostream>
 #include <sstream>
 #include <vector>
@@ -18,9 +20,12 @@ class wikiEntry {
     string toLower(string str); // Convert string to lowercase
     string title;
     pair<string, string> pairType;
+
+    inline bool operator < (const wikiEntry& rhs) const;
 };
 
-string parseTitle(string rawData) {
+
+string wikiEntry::parseTitle(string rawData) {
     string delimiter = ":";
     stringstream data(rawData);
     string line;
@@ -29,7 +34,7 @@ string parseTitle(string rawData) {
     return line;                // Return the line from above loop
 }
 
-string toLower(string str)
+string wikiEntry::toLower(string str)
 {
     string temp = str;
     for(auto& c : temp)
@@ -41,7 +46,7 @@ string toLower(string str)
 
 }
 
-void insertEntry(map<string, wikiEntry> &entries, string rawData) {
+void wikiEntry::insertEntry(map<string, wikiEntry> &entries, string rawData) {
     entries.insert(pair<string, wikiEntry>(toLower(parseTitle(rawData)), wikiEntry(rawData)));
 }
 
@@ -65,3 +70,13 @@ wikiEntry::wikiEntry(string title, string ns, string id) {
 
 wikiEntry::~wikiEntry() {
 }
+
+bool wikiEntry::operator<(const wikiEntry &rhs) const {
+    return (
+            make_pair(stoi(this->pairType.first), stoi(this->pairType.second))
+            <
+            make_pair(stoi(rhs.pairType.first), stoi(rhs.pairType.second))
+    );
+}
+
+#endif
