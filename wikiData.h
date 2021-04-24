@@ -10,9 +10,11 @@ class wikiData {
     std::string operator[](std::size_t index) const {
         return std::string(&m_line[m_data[index] + 1], m_data[index + 1] - (m_data[index] + 1));
     }
+
     std::size_t size() const {
         return m_data.size() - 1;
     }
+
     void readNextRow(std::istream& str) {
         std::getline(str, m_line);
 
