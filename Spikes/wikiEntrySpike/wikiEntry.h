@@ -18,6 +18,7 @@ class wikiEntry {
     string toLower(string str); // Convert string to lowercase
     string title;
     pair<string, string> pairType;
+    bool operator== (const wikiEntry &other);
 };
 
 string parseTitle(string rawData) {
@@ -64,4 +65,13 @@ wikiEntry::wikiEntry(string title, string ns, string id) {
 }
 
 wikiEntry::~wikiEntry() {
+}
+
+bool wikiEntry::operator==(const wikiEntry &other) {
+    if (this->pairType.first == other.pairType.first
+        && this->pairType.second == other.pairType.second){
+        return true;
+    }else {
+        return false;
+    }
 }
