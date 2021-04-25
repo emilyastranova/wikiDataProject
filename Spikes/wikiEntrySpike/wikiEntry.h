@@ -20,8 +20,7 @@ class wikiEntry {
     string toLower(string str); // Convert string to lowercase
     string title;
     pair<string, string> pairType;
-    bool operator== (const wikiEntry &data);
-
+    bool operator== (const wikiEntry &other);
     inline bool operator < (const wikiEntry& rhs) const;
 };
 
@@ -71,13 +70,15 @@ wikiEntry::wikiEntry(string title, string ns, string id) {
 wikiEntry::~wikiEntry() {
 }
 
-bool wikiEntry::operator== (const wikiEntry &data) {
-      if (this->pairType.first == pairType.first && this->title == data.title) {
-          cout << "This Title:" << this->title << " title: " << data.title << endl;
-          return true;
-      }
-      return false;
+bool wikiEntry::operator==(const wikiEntry &other) {
+    if (this->pairType.first == other.pairType.first
+        && this->pairType.second == other.pairType.second){
+        return true;
+    }else {
+        return false;
+    }
 }
+
 bool wikiEntry::operator<(const wikiEntry &rhs) const {
     return (
             make_pair(stoi(this->pairType.first), stoi(this->pairType.second))

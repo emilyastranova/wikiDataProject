@@ -5,6 +5,7 @@
 #include <locale>
 
 using namespace std;
+
 class wikiEntry {
    private:
     /* data */
