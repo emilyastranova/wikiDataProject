@@ -81,7 +81,7 @@ bool wikiEntry::operator==(const wikiEntry &other) {
 
 bool wikiEntry::operator<(const wikiEntry &other) const {
       if(stoi(this->pairType.first) < stoi(other.pairType.first) 
-       && stoi(this->pairType.second) < stoi(other.pairType.second)){
+       || stoi(this->pairType.second) < stoi(other.pairType.second)){
            return true;
        }else {
            return false;
