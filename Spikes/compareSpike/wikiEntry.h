@@ -15,6 +15,7 @@ class wikiEntry {
     wikiEntry(string rawData);
     ~wikiEntry();
 
+    void printEntry();
     string parseTitle(string rawData);  // Used for returning the title from a raw .dat entry string
     void insertEntry(map<string, wikiEntry> &entries, string rawData);
     string toLower(string str); // Convert string to lowercase
@@ -45,8 +46,14 @@ string toLower(string str)
 
 }
 
-void insertEntry(map<string, wikiEntry> &entries, string rawData) {
+void insertEntry(map<string, wikiEntry> &entries, string rawData)
+{
     entries.insert(pair<string, wikiEntry>(toLower(parseTitle(rawData)), wikiEntry(rawData)));
+}
+
+void wikiEntry::printEntry()
+{
+    cout << "Title: " << title << "\nNamespace: " << pairType.first << "\nID: " << pairType.second << endl;
 }
 
 wikiEntry::wikiEntry(string rawData) {
