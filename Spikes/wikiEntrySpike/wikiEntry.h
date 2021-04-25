@@ -25,7 +25,7 @@ class wikiEntry {
 };
 
 
-string wikiEntry::parseTitle(string rawData) {
+string parseTitle(string rawData) {
     string delimiter = ":";
     stringstream data(rawData);
     string line;
@@ -34,7 +34,7 @@ string wikiEntry::parseTitle(string rawData) {
     return line;                // Return the line from above loop
 }
 
-string wikiEntry::toLower(string str)
+string toLower(string str)
 {
     string temp = str;
     for(auto& c : temp)
@@ -46,7 +46,7 @@ string wikiEntry::toLower(string str)
 
 }
 
-void wikiEntry::insertEntry(map<string, wikiEntry> &entries, string rawData) {
+void insertEntry(map<string, wikiEntry> &entries, string rawData) {
     entries.insert(pair<string, wikiEntry>(toLower(parseTitle(rawData)), wikiEntry(rawData)));
 }
 
