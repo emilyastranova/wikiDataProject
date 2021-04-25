@@ -1,3 +1,5 @@
+#ifndef H_WIKI_ENTRY_SPIKE
+#define H_WIKI_ENTRY_SPIKE
 #include <iostream>
 #include <sstream>
 #include <vector>
@@ -19,7 +21,10 @@ class wikiEntry {
     string title;
     pair<string, string> pairType;
     bool operator== (const wikiEntry &data);
+
+    inline bool operator < (const wikiEntry& rhs) const;
 };
+
 
 string parseTitle(string rawData) {
     stringstream data(rawData);
@@ -73,3 +78,12 @@ bool wikiEntry::operator== (const wikiEntry &data) {
       }
       return false;
 }
+bool wikiEntry::operator<(const wikiEntry &rhs) const {
+    return (
+            make_pair(stoi(this->pairType.first), stoi(this->pairType.second))
+            <
+            make_pair(stoi(rhs.pairType.first), stoi(rhs.pairType.second))
+    );
+}
+
+#endif
