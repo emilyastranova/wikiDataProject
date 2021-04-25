@@ -3,6 +3,7 @@
 //
 
 #include <utility>
+#include <algorithm>
 
 #include "../wikiEntrySpike/wikiEntry.h"
 
