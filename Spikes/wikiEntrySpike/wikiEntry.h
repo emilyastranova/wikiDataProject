@@ -1,3 +1,5 @@
+#ifndef H_WIKI_ENTRY_SPIKE
+#define H_WIKI_ENTRY_SPIKE
 #include <iostream>
 #include <sstream>
 #include <vector>
@@ -19,10 +21,11 @@ class wikiEntry {
     string title;
     pair<string, string> pairType;
     bool operator== (const wikiEntry &other);
+    inline bool operator < (const wikiEntry& rhs) const;
 };
 
+
 string parseTitle(string rawData) {
-    string delimiter = ":";
     stringstream data(rawData);
     string line;
     for(int x = 0; x < 3; x++)  // Traverse to third segment of string (the title)
@@ -75,3 +78,13 @@ bool wikiEntry::operator==(const wikiEntry &other) {
         return false;
     }
 }
+
+bool wikiEntry::operator<(const wikiEntry &rhs) const {
+    return (
+            make_pair(stoi(this->pairType.first), stoi(this->pairType.second))
+            <
+            make_pair(stoi(rhs.pairType.first), stoi(rhs.pairType.second))
+    );
+}
+
+#endif
