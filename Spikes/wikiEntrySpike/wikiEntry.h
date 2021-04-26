@@ -79,12 +79,18 @@ bool wikiEntry::operator==(const wikiEntry &other) {
     }
 }
 
-bool wikiEntry::operator<(const wikiEntry &rhs) const {
-    return (
-            make_pair(stoi(this->pairType.first), stoi(this->pairType.second))
-            <
-            make_pair(stoi(rhs.pairType.first), stoi(rhs.pairType.second))
-    );
+bool wikiEntry::operator<(const wikiEntry &other) const {
+      if(stoi(this->pairType.first) < stoi(other.pairType.first) 
+       || stoi(this->pairType.second) < stoi(other.pairType.second)){
+           return true;
+       }else {
+           return false;
+        }
+    //return (
+         //   make_pair(stoi(this->pairType.first), stoi(this->pairType.second))
+         //   <
+       //     make_pair(stoi(rhs.pairType.first), stoi(rhs.pairType.second))
+  //  );
 }
 
 #endif
