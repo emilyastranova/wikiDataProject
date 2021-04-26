@@ -15,9 +15,11 @@ class wikiEntry {
     wikiEntry(string rawData);
     ~wikiEntry();
 
+    void search(map<string, wikiEntry> entries, string userInput, vector<wikiEntry> resultVector);
     void printEntry();
     string parseTitle(string rawData);  // Used for returning the title from a raw .dat entry string
     void insertEntry(map<string, wikiEntry> &entries, string rawData);
+    void insertEntry(map<string, wikiEntry> &entries, string title, string ns, string id);
     string toLower(string str); // Convert string to lowercase
     string title;
     pair<string, string> pairType;
@@ -44,6 +46,19 @@ string toLower(string str)
 
     return temp;
 
+}
+
+void search(map<string, wikiEntry> &entries, string userInput, vector<wikiEntry> &resultVector){
+    map<string, wikiEntry>::iterator it;
+    for (it = entries.begin(); it != entries.end(); ++it) {
+        if (it->first.find(toLower(userInput)) != string::npos) {
+            resultVector.insert(resultVector.begin(), wikiEntry(it->first, it->second.pairType.first, it->second.pairType.second));
+        }
+    }
+}
+
+void insertEntry(map<string, wikiEntry> &entries, string title, string ns, string id) {
+    entries.insert(pair<string, wikiEntry>(toLower(parseTitle(title)), wikiEntry(title, ns, id)));
 }
 
 void insertEntry(map<string, wikiEntry> &entries, string rawData) {
