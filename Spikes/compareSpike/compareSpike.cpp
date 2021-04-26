@@ -7,8 +7,6 @@
 using namespace std;
 
 int main() {
-    bool unitTest1 = false; // Test < operator
-    bool unitTest2 = false; // Test == operator
 
     wikiEntry testEntry = wikiEntry("13576300:156567:Duplicate Test");
     wikiEntry testEntryDuplicate = wikiEntry("13576300:156567:Duplicate Test 2");
