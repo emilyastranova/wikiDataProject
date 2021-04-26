@@ -2,7 +2,7 @@
 #include <map>
 #include <vector>
 
-#include "wikiEntry.h"
+#include "../wikiEntrySpike/wikiEntry.h"
 
 using namespace std;
 
@@ -14,7 +14,7 @@ int main() {
     wikiEntry testEntryDuplicate = wikiEntry("13576300:156567:Duplicate Test 2");
 
     wikiEntry entry1 = wikiEntry("13576300:156544:The Arrival (The Twilight Zone)");
-    wikiEntry entry2 = wikiEntry("13576300:156546:Cian Ciaran");
+    wikiEntry entry2 = wikiEntry("13576301:156546:Cian Ciaran");
 
     entry1.printEntry();
     cout << endl;
@@ -42,4 +42,7 @@ int main() {
         cout << " [==] Operator: [P]" << endl;
     else
         cout << " [==] Operator: [F]" << endl;
+
+    if (entry1 < entry2 && testEntry == testEntryDuplicate)
+        cout << "\nCongratulations C Team!" << endl;
 }
