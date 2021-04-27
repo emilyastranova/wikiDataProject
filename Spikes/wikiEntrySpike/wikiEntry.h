@@ -106,19 +106,19 @@ bool wikiEntry::operator==(const wikiEntry &other) {
 }
 
 bool wikiEntry::operator<(const wikiEntry &other) const {
-    // Truman's Implementation Below:
-    // if (stoi(this->pairType.first) < stoi(other.pairType.first) || stoi(this->pairType.second) < stoi(other.pairType.second)) {
-    //     return true;
-    // } else {
-    //     return false;
-    // }
-    
     // Lars Implementation Below:
-    return (
-      make_pair(stoi(this->pairType.first), stoi(this->pairType.second))
-      <
-        make_pair(stoi(other.pairType.first), stoi(other.pairType.second))
-     );
+    if (stoi(this->pairType.first) < stoi(other.pairType.first) || stoi(this->pairType.second) < stoi(other.pairType.second)) {
+        return true;
+    } else {
+        return false;
+    }
+    
+    // Truman's Implementation Below:
+    // return (
+    //   make_pair(stoi(this->pairType.first), stoi(this->pairType.second))
+    //   <
+    //     make_pair(stoi(other.pairType.first), stoi(other.pairType.second))
+    //  );
 }
 
 #endif
