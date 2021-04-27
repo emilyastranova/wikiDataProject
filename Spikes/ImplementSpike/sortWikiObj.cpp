@@ -8,14 +8,10 @@ using namespace std;
 int main() {
     
     vector<wikiEntry> wikiEntryList = {
-        makeEntry("43658487", "166067", "title"),
-        makeEntry("300907853", "277592", "title"),
-        makeEntry("66679025", "172583", "title"),
-        makeEntry("233152987", "242099", "title"),
-        makeEntry("207724733", "231119", "title"),
-        makeEntry("89800554", "180741", "title"),
-        makeEntry("247065992", "249093", "title"),
-        makeEntry("186657846", "221256", "title")
+        wikiEntry("title3", "43658487", "166069"),
+        wikiEntry("title", "43658487", "166067"),
+        wikiEntry("title2", "43658487", "166068"),
+        wikiEntry("title4", "43658489", "166069"),
         
     };
 
