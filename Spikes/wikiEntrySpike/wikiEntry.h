@@ -15,6 +15,7 @@ class wikiEntry {
     wikiEntry(string rawData);
     ~wikiEntry();
 
+    wikiEntry makeEntry(string ns, string id, string title);
     void search(map<string, wikiEntry> entries, string userInput, vector<wikiEntry> resultVector);
     void printEntry();
     string parseTitle(string rawData);  // Used for returning the title from a raw .dat entry string
@@ -68,6 +69,10 @@ void insertEntry(map<string, wikiEntry> &entries, string rawData) {
 void wikiEntry::printEntry()
 {
     cout << "Title: " << title << "\nNamespace: " << pairType.first << "\nID: " << pairType.second << endl;
+}
+
+wikiEntry makeEntry(string ns, string id, string title) {
+    return wikiEntry(title, ns, id);
 }
 
 wikiEntry::wikiEntry(string rawData) {
