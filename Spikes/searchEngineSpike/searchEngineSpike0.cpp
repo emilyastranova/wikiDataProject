@@ -5,7 +5,7 @@
 #include <vector>
 #include "../wikiEntrySpike/wikiEntry.h"
 
-//:) 
+//:)
 int main() {
     // Iterate through the terms and set intersect at the same time... Oh god why
     /*
@@ -36,23 +36,40 @@ int main() {
     
     // Handle only 1 word (do not do the damn loop after 1 word)
     searchString(entries, *userInputIt, flushVector);
-    printEntryVector(flushVector);
     ++userInputIt;
+    if(userInputIt == userInput.end()) {
+        printEntryVector(flushVector);
+        exit(0);
+    }
     
     // Handle 2 words
     // Search and put results in currentVector
     // Do set intersection, store in resultsVector
-    // Print results (resultsVector)
     searchString(entries, *userInputIt, currentVector);
     set_intersection(flushVector.begin(), flushVector.end(), currentVector.begin(), currentVector.end(), back_inserter(resultsVector));
-    printEntryVector(resultsVector);
     ++userInputIt;
+    flushVector.clear();
+    currentVector.clear();
     
     // Handle anything more than 2 words (loop)
-    
-
+    for(userInputIt; userInputIt != userInput.end(); ++userInputIt) {
+        // Do the search
+        // Store in currentVector
+        searchString(entries, *userInputIt, currentVector);
+        // Set intersect currentVector and resultVector
+        // Store the intersected results in flushVector
+        set_intersection(currentVector.begin(), currentVector.end(), resultsVector.begin(), resultsVector.end(), back_inserter(flushVector));
+        // Clear resultVector
+        resultsVector.clear();
+        // Move everything from flushVector to resultVector
+        resultsVector = flushVector;
+        // Clear flushVector
+        flushVector.clear();
+        currentVector.clear();
+    }
 
     // Print final results
+    printEntryVector(resultsVector);
 
     return 0;
 }
