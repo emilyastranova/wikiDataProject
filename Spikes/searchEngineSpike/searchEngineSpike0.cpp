@@ -3,35 +3,56 @@
 #include <iterator>
 #include <set>
 #include <vector>
+#include "../wikiEntrySpike/wikiEntry.h"
 
+//:) 
 int main() {
-    std::vector<int> v1 = {5, 10, 15, 20, 50};
-    std::vector<int> v2 = {50, 40, 30, 20, 5};
-    std::vector<int> v3 = {1, 2, 20, 4, 5, 50};
-    std::set<int> vResult;
+    // Iterate through the terms and set intersect at the same time... Oh god why
+    /*
+        1) Search through first term 
+        2) Store the results in a vector (flushVector). Only using this once, then it becomes a swap 
+        3) Search through second term
+        4) Temporarily store in another vector (currentVector)
+        5) Only store the intersecting values vResults
+        6) Move currentVector forwards
+        7) Do set_intersection on vResults and currentVector
+        8) Store that in flushVector
+        9) Clear vResults
+        10) Move from flushVector to vResults
+        11) Loop to step 5
+    */ 
+ 
+    vector<wikiEntry> entries;
+    readInData(entries);
+   
+    vector<wikiEntry> flushVector, currentVector;
+    vector<wikiEntry> resultsVector;
+    vector<wikiEntry>::iterator resultIterator;
 
-    std::ostream_iterator<int> screen(std::cout, " ");
+    // Get user input
+    vector<string> userInput; 
+    getUserInput(userInput);
+    vector<string>::iterator userInputIt = userInput.begin();
+    
+    // Handle only 1 word (do not do the damn loop after 1 word)
+    searchString(entries, *userInputIt, flushVector);
+    printEntryVector(flushVector);
+    ++userInputIt;
+    
+    // Handle 2 words
+    // Search and put results in currentVector
+    // Do set intersection, store in resultsVector
+    // Print results (resultsVector)
+    searchString(entries, *userInputIt, currentVector);
+    set_intersection(flushVector.begin(), flushVector.end(), currentVector.begin(), currentVector.end(), back_inserter(resultsVector));
+    printEntryVector(resultsVector);
+    ++userInputIt;
+    
+    // Handle anything more than 2 words (loop)
+    
 
-    std::cout << "v1 = ";
-    std::copy(v1.begin(), v1.end(), screen);
-    std::cout << std::endl;
 
-    std::cout << "v2 = ";
-    std::copy(v2.begin(), v2.end(), screen);
-    std::cout << std::endl;
-
-    std::cout << "v3 = ";
-    std::copy(v3.begin(), v3.end(), screen);
-    std::cout << std::endl;
-
-    std::sort(v1.begin(), v1.end());
-    std::sort(v2.begin(), v2.end());
-    std::sort(v3.begin(), v3.end());
-
-    std::set_intersection(v1.begin(), v1.end(), v2.begin(), v2.end(), std::inserter(vResult, vResult.begin()));
-    std::set_intersection(vResult.begin(), vResult.end(), v3.begin(), v3.end(), std::inserter(vResult, vResult.begin()));
-    std::cout << "\nIntersecting values:\n";
-    std::copy(vResult.begin(), vResult.end(), screen);
+    // Print final results
 
     return 0;
 }
