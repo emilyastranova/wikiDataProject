@@ -3,7 +3,9 @@
 #include <iterator>
 #include <set>
 #include <vector>
-#include "../wikiEntrySpike/wikiEntry.h"
+#include "wikiEntry.h"
+#include <stdio.h>
+#include <time.h>
 
 //:)
 int main() {
@@ -21,26 +23,28 @@ int main() {
         10) Move from flushVector to vResults
         11) Loop to step 5
     */ 
- 
+
     vector<wikiEntry> entries;
     readInData(entries);
-   
+    
     vector<wikiEntry> flushVector, currentVector;
     vector<wikiEntry> resultsVector;
     vector<wikiEntry>::iterator resultIterator;
 
+    clock_t t;
+
+while(1) {
     // Get user input
     vector<string> userInput; 
     getUserInput(userInput);
     vector<string>::iterator userInputIt = userInput.begin();
     
     // Handle only 1 word (do not do the damn loop after 1 word)
+    t = clock(); // We liked this code a lot: https://www.tutorialspoint.com/how-to-measure-time-taken-by-a-function-in-c
     searchString(entries, *userInputIt, flushVector);
     ++userInputIt;
-    if(userInputIt == userInput.end()) {
-        printEntryVector(flushVector);
-        exit(0);
-    }
+
+    if(userInputIt != userInput.end()) {
     
     // Handle 2 words
     // Search and put results in currentVector
@@ -67,9 +71,21 @@ int main() {
         flushVector.clear();
         currentVector.clear();
     }
-
     // Print final results
     printEntryVector(resultsVector);
+    }
+    else
+        printEntryVector(flushVector);
+    
+    t = clock() - t;
+    double time_taken = ((double)t)/CLOCKS_PER_SEC; // calculate the elapsed time
+    printf("The program took %f seconds to execute\n", time_taken);
+    userInput.clear();
+    flushVector.clear();
+    currentVector.clear();
+    resultsVector.clear();
+
+}
 
     return 0;
 }
