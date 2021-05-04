@@ -30,7 +30,10 @@ class wikiEntry {
     pair<string, string> pairType;
     bool operator== (const wikiEntry &other);
     inline bool operator < (const wikiEntry& rhs) const;
-    istream& operator >> (wikiData& data);
+    // Parses strings into a vector of strings with the delimiter space ' '.
+    void parseInput(string &userInput, vector<string> &stringVector); 
+    // Outputs to a vector of vectors containing wiki entries that match search terms.
+    void searchMatch(map<string, wikiEntry> &entries, vector<string> &stringVector, vector<vector<wikiEntry>> &matchedVector);
 };
 
 istream& operator>>(istream& str, wikiData& data) {
@@ -205,6 +208,40 @@ bool wikiEntry::operator<(const wikiEntry &other) const {
       <
         make_pair(stoi(other.pairType.first), stoi(other.pairType.second))
      );
+}
+
+void parseInput(string &userInput, vector<string> &stringVector) {
+    string temp;
+    stringstream stream(userInput); // converts string to a stringstream for use in getline()
+
+    while(getline(stream, temp, ' ')) { // breaks strings into tokens that are pushed into stringVector.
+        stringVector.push_back(temp);
+    } 
+}
+
+void searchMatch(map<string, wikiEntry> &entries, vector<string> &stringVector, vector<vector<wikiEntry>> &searchedVector) {
+    vector<wikiEntry> internalVector;
+
+    // Searches for entries with titles that match search terms.
+    // Pushes found entries into a vector of vectors that store each term's matches.
+    for (int i = 0; i < stringVector.size(); ++i) { 
+        search(entries, stringVector.at(i), internalVector);
+        searchedVector.push_back(internalVector);
+        internalVector.clear();
+    }
+
+    // example for iterating through vector of vectors
+    // has printEntry & couts for testing purposes
+    for (int i = 0; i < searchedVector.size(); ++i) {
+        cout << "----------------------" << endl;
+        cout << "searchedVector Index " << i << endl;
+        cout << "----------------------" << endl;
+        for (int j = 0; j < searchedVector.at(i).size(); ++j) {
+            cout << "*Internal Vector Index " << j << '*' << endl;
+            searchedVector.at(i).at(j).printEntry();
+            cout << endl;
+        }
+    }
 }
 
 #endif
