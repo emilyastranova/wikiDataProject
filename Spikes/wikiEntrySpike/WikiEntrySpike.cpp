@@ -35,14 +35,10 @@ int main() {
         cout << "ID: " << it->second.pairType.second << endl;
     } */
     
-    // mainly tested with input "rhys Gruff"
-    cout << "Input Search Term: ";
-    getline(cin, userInput);
-    cout << endl;
+
 
     // Couts userInput split into individual "words" for testing
-    cout << "Search Terms: ";
-    parseInput(userInput, stringVector);
+    getUserInput(stringVector);
     for (int i; i < stringVector.size(); ++i) {
         cout << "\"" << stringVector.at(i) << "\" ";
     }
