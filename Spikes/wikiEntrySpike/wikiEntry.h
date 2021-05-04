@@ -41,21 +41,21 @@ istream& operator>>(istream& str, wikiData& data) {
     return str;
 }
 
-void getUserInput(vector<string> &userSearchTerms) {
-    // Credit: paddy
-    // https://stackoverflow.com/questions/14347033/reading-a-sequence-of-words-to-add-them-in-a-vector
-    //-------------------------------------------------------
-    // Get all words on one line                            |
-    cout << "Enter search term: " << flush; //              |
-    string allwords; //                                     |
-    getline(cin, allwords); //                              |
-    //                                                      |
-    // Parse words into a vector                            |
-    string word; //                                         |
-    istringstream iss(allwords); //                         |
-    while( iss >> word ) userSearchTerms.push_back(word);// |
-    //-------------------------------------------------------
-}
+// void getUserInput(vector<string> &userSearchTerms) {
+//     // Credit: paddy
+//     // https://stackoverflow.com/questions/14347033/reading-a-sequence-of-words-to-add-them-in-a-vector
+//     //-------------------------------------------------------
+//     // Get all words on one line                            |
+//     cout << "Enter search term: " << flush; //              |
+//     string allwords; //                                     |
+//     getline(cin, allwords); //                              |
+//     //                                                      |
+//     // Parse words into a vector                            |
+//     string word; //                                         |
+//     istringstream iss(allwords); //                         |
+//     while( iss >> word ) userSearchTerms.push_back(word);// |
+//     //-------------------------------------------------------
+// }
 
 void printEntryVector(vector<wikiEntry> vResult) {
     // Find longest result
@@ -210,7 +210,11 @@ bool wikiEntry::operator<(const wikiEntry &other) const {
      );
 }
 
-void parseInput(string &userInput, vector<string> &stringVector) {
+void getUserInput(vector<string> &stringVector) {
+    string userInput;
+    cout << "Input Search Term: ";
+    getline(cin, userInput);
+    cout << endl;
     string temp;
     stringstream stream(userInput); // converts string to a stringstream for use in getline()
 
