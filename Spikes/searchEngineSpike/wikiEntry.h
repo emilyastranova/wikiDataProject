@@ -48,7 +48,7 @@ void getUserInput(vector<string> &stringVector) {
         stringVector.push_back(temp);
     } 
 }
-
+ 
 void printEntryVector(vector<wikiEntry> vResult) {
     // Find longest result
     vector<wikiEntry>::iterator resultIt;
